@@ -12,11 +12,16 @@ public class Hooks {
 
     @Before
     public void openBrowser(){
-        WebDriverManager.chromedriver().clearDriverCache().setup();
+        //exclude webdriver manager
+//        WebDriverManager.chromedriver().clearDriverCache().setup();
         //fungsi untuk setup chrome agar bisa terbuka
-        WebDriverManager.chromedriver().setup();
+//        WebDriverManager.chromedriver().setup();
         ChromeOptions co = new ChromeOptions();
-        co.addArguments("--remote-allow-origins=*");
+        co.addArguments("--remote-allow-origins=*",
+                "--no-sandbox",
+                "--single-process",
+                "--ignore-ssl-errors=yes",
+                "--ignore-certificate-errors");
         //inisiasi library selenium
         driver = new ChromeDriver(co);
 
@@ -27,6 +32,7 @@ public class Hooks {
 
     @After
     public void closeBrowser(){
+        driver.close();
         driver.quit();
     }
 }

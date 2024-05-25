@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         },
         features = {"classpath:features/"},
         plugin = {"pretty",
-                "html:target/site/cucumber-pretty",
+                "html:target/site/cucumber-pretty.html",
                 "json:target/cucumber/cucumber.json"
         }
 )
