@@ -1,4 +1,4 @@
-package run_cukes;
+package runCukes;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;

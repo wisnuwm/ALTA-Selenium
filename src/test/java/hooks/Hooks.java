@@ -10,24 +10,27 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class Hooks {
     public static WebDriver driver;
 
-    @Before
-    public void openBrowser(){
-        //exclude webdriver manager
-//        WebDriverManager.chromedriver().clearDriverCache().setup();
-        //fungsi untuk setup chrome agar bisa terbuka
-//        WebDriverManager.chromedriver().setup();
-        ChromeOptions co = new ChromeOptions();
-        co.addArguments("--remote-allow-origins=*",
-                "--no-sandbox",
+    public static ChromeOptions GenerateDriverChrome() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox",
                 "--single-process",
                 "--ignore-ssl-errors=yes",
-                "--ignore-certificate-errors");
+                "--ignore-certificate-errors",
+                "--window-size=1280,800",
+                "--remote-allow-origins=*"
+//                            , "headless"
+        );
+        return options;
+    }
+
+    @Before
+    public void openBrowser(){
         //inisiasi library selenium
-        driver = new ChromeDriver(co);
+        driver = new ChromeDriver(GenerateDriverChrome());
 
         String appUrl = "https://www.saucedemo.com/";
         driver.get(appUrl);//fungsi untuk ngebuka link html
-        driver.manage().window().maximize();//fungsi untuk memaximize browser
+        driver.manage().window().maximize();//fungsi untuk maximize browser
     }
 
     @After
