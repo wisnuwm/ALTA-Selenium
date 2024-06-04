@@ -13,7 +13,7 @@ public class Hooks {
     public static ChromeOptions GenerateDriverChrome() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox",
-                "--single-process",
+//                "--single-process", -> Bikin error di windows
                 "--ignore-ssl-errors=yes",
                 "--ignore-certificate-errors",
                 "--window-size=1280,800",
